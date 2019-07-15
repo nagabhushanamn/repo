@@ -1,18 +1,21 @@
 
 
 pipeline {
-	
+
     agent any
 
     stages {
         stage('Build') {
             steps {
                 echo 'Building..'
+				git 'https://github.com/nagabhushanamn/repo'
             }
         }
         stage('Test') {
             steps {
-                echo 'Testing..'
+                dir('demo-app'){
+					sh "mvn test"
+				}
             }
         }
         stage('Deploy') {
